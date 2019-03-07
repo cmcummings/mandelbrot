@@ -1,22 +1,44 @@
 from mandelbrot import Mandelbrot
-import pygame
+import sys
+import config as cfg
+import tkinter as tk
 
 
-SIZE = WIDTH, HEIGHT = 1280, 720
+class Main:
+
+    def __init__(self):
+        # Initialize the pygame window
+        self.master = tk.Tk()
+        self.master.title("Mandelbrot")
+        self.master.resizable(0, 0)
+        self.canvas = tk.Canvas(self.master, width=cfg.WIDTH, height=cfg.HEIGHT, bd=0, relief="ridge", highlightthickness=0)
+        self.canvas.pack()
+
+        # Intialize the Mandelbrot set
+        graph = Mandelbrot(-2, 1, -1, 1, cfg.WIDTH, cfg.HEIGHT)
+        graph.calculate()
+        graph.calculate_colors()
+        self.graph_image = graph.export()
+        graph.save()
+
+        self.canvas.create_image(0, 0, anchor=tk.NW, image=self.graph_image)
+
+        while True:
+            self.tick()
+
+    def tick(self):
+        self.logic()
+        self.draw(self.canvas)
+
+        self.master.update_idletasks()
+        self.master.update()
+
+    def logic(self):
+        pass
+
+    def draw(self, canvas):
+        pass
 
 
-pygame.init()
-screen = pygame.display.set_mode(SIZE)
-pygame.display.set_caption("Mandelbrot Set")
-
-graph = Mandelbrot(-2, 1, -1, 1, WIDTH, HEIGHT)
-m_set = graph.set
-
-for y, row in enumerate(m_set):
-    for x, magnitude in enumerate(row):
-        rect = pygame.Rect(x, y, 1, 1)
-        if magnitude == -1: 
-            color = (0, 0, 0)
-        else:
-            color = (255, 255, 255)
-        pygame.draw.rect(screen, color, rect)
+if __name__ == "__main__":
+    Main()
