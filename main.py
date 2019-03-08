@@ -16,10 +16,8 @@ class Main:
 
         # Intialize the Mandelbrot set
         graph = Mandelbrot(-2, 1, -1, 1, cfg.WIDTH, cfg.HEIGHT)
-        graph.calculate()
-        graph.calculate_colors()
-        self.graph_image = graph.export()
-        graph.save()
+        self.graph_image = graph.generate_image()
+        graph.export()
 
         self.canvas.create_image(0, 0, anchor=tk.NW, image=self.graph_image)
 

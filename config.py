@@ -4,6 +4,10 @@
 # Window
 SIZE = WIDTH, HEIGHT = 1280, 720
 
+# Mandelbrot function
+MAX_ITERATIONS = 160
+THREADS = 64
+
 # Colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
