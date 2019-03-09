@@ -31,6 +31,7 @@ class Mandelbrot:
             thread = Thread(target=self.calculate_thread, args=(start, rows_per_thread))
             thread_list.append(thread)
             thread.start()
+        for thread in thread_list:
             thread.join()
                     
         # If there are leftover rows that need to be calculated
@@ -77,7 +78,7 @@ class Mandelbrot:
         """Returns the color that should be drawn based on the result of the Mandelbrot function."""
         if point == -1: # If part of set
             return cfg.BLACK
-        return (point*5, 0, 0)
+        return (point*5, 255-point*5, point*5)
 
     def generate_image(self):
         """Generates a PIL image of the set. Returns a Tkinter image."""
