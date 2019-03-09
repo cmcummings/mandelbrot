@@ -4,6 +4,8 @@ from multiprocessing import Pool as ThreadPool
 from PIL import Image, ImageDraw, ImageTk
 import config as cfg
 import os, time
+from math import log
+from colorsys import hsv_to_rgb
 
 class Mandelbrot:
 
@@ -78,11 +80,14 @@ class Mandelbrot:
         """Returns the color that should be drawn based on the result of the Mandelbrot function."""
         if point == -1: # If part of set
             return cfg.BLACK
-        return (point*5, 255-point*5, point*5)
+        hue = int(255 * point / cfg.MAX_ITERATIONS)
+        saturation = 255
+        value = 255 if point < cfg.MAX_ITERATIONS else 0
+        return (hue, saturation, value)
 
     def generate_image(self):
         """Generates a PIL image of the set. Returns a Tkinter image."""
-        self.image = Image.new("RGB", (self.x_scl, self.y_scl), color=cfg.BLACK)
+        self.image = Image.new("HSV", (self.x_scl, self.y_scl), color=cfg.BLACK)
         draw = ImageDraw.Draw(self.image)
 
         num_threads = cfg.THREADS
@@ -95,6 +100,8 @@ class Mandelbrot:
             thread.start()
             thread.join() # Make sure main thread waits for all other threads
         print("Image created.")
+
+        self.image = self.image.convert("RGB")
 
         return ImageTk.PhotoImage(self.image)
 
