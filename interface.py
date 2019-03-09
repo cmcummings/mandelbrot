@@ -46,6 +46,7 @@ class UserInterface:
 
     def on_mouse_motion(self, event):
         self.mouse_x, self.mouse_y = event.x, event.y
+        # print(self.main.graph.get_point_at_index(self.mouse_y, self.mouse_x))
 
     def turn_on(self, event):
         self.on = True
