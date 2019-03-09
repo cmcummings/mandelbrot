@@ -14,4 +14,4 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 # Captures
-CAPTURES_DIR = "/home/connor/Documents/Projects/Python/mandelbrot/captures"
+CAPTURES_DIR = "captures/"

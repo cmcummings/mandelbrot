@@ -108,7 +108,7 @@ class Mandelbrot:
     def export(self):
         """Saves an image of the Mandelbrot set in captures/. 
             generate_image() must be ran before this."""
-        file_name = "Mandelbrot_x:(" + str(self.x_min) + ":" + str(self.x_max) + ")_y:(" + str(self.y_min) + ":" + str(self.y_max) + ")_scl:(" + str(self.x_scl) + "x" + str(self.y_scl) + ")"
+        file_name = "Mandelbrot_x=(" + str(self.x_min) + " to " + str(self.x_max) + ")_y=(" + str(self.y_min) + " to " + str(self.y_max) + ")_scl=(" + str(self.x_scl) + "x" + str(self.y_scl) + ")"
         file_path = os.path.join(cfg.CAPTURES_DIR, file_name + ".png")
         
         self.image.save(file_path, "PNG")
