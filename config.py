@@ -4,7 +4,7 @@
 # Window
 TITLE = "Mandelbrot Visualization"
 SIZE = WIDTH, HEIGHT = 1280, 720
-FPS = 30
+FPS = 60
 
 # Mandelbrot function
 MAX_ITERATIONS = 160

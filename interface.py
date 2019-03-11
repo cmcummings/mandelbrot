@@ -64,6 +64,8 @@ class UserInterface:
             canvas.create_rectangle(self.mouse_x-155, self.mouse_y-55, 
                                 self.mouse_x-5, self.mouse_y-5, 
                                 fill="black", outline="white")
+            tooltip_text = "(" + str(self.mouse_x) + ", " + str(self.mouse_y) + ")"
+            canvas.create_text(self.mouse_x-5, self.mouse_y-5, text="")
         if self.selecting:
             canvas.create_rectangle(self.select[0][0], self.select[0][1],
                                     self.mouse_x, self.mouse_y,
